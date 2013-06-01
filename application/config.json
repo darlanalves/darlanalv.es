@@ -1,0 +1,10 @@
+{
+	"name": "darlanalv.es",
+	"url": "http://darlanalv.es",
+
+	"modules": {
+		"site": {
+			"path": "__MODULE__/site"
+		}
+	}
+}

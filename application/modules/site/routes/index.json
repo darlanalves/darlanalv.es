@@ -1,0 +1,13 @@
+{
+	"default": {
+		"methods": "get|head",
+		"url": "/",
+		"action": "site:index:index"
+	},
+
+	"external-name": {
+		"methods": "get",
+		"url": "/:name",
+		"action": "site:index:showName"
+	}
+}
