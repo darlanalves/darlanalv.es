@@ -1,16 +1,26 @@
 {
-  "name": "darlanalv-es",
-  "author": {
-    "name": "Darlan Alves",
-    "email": "darlan@moovia.com"
-  },
-  "dependencies": {
-    "express": "~3.2.5",
-    "mysql": "~2.0.0-alpha8",
-    "jn-classjs": "0.0.2",
-    "lodash": "~1.2.1",
-    "log-color": "~1.0.0",
-    "log": "~1.4.0",
-    "memjs": "~0.6.0"
-  }
+	"name": "darlanalv-es",
+	"description": "My personal site/blog",
+	"author": {
+		"name": "Darlan Alves",
+		"email": "darlan@moovia.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://darlanalves@bitbucket.org/darlanalves/darlanalv.es.git"
+	},
+	"engines": {
+		"node": "0.x",
+		"npm": "1.2.x"
+	},
+	"main": "./web",
+	"dependencies": {
+		"express": "~3.2.5",
+		"mysql": "~2.0.0-alpha8",
+		"jn-classjs": "0.0.2",
+		"lodash": "~1.2.1",
+		"log-color": "~1.0.0",
+		"log": "~1.4.0",
+		"memjs": "~0.6.0"
+	}
 }
