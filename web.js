@@ -1,8 +1,8 @@
-//var load = require(__dirname + '/application/classloader').load,
+console.log('Running from %s ', __dirname);
 
 var express = require('express'),
 	fs = require('fs'),
-	Loader = require('./server/node_modules/App/ClassLoader'),
+	Loader = require(__dirname + '/server/node_modules/App/ClassLoader'),
 	lib = new Loader(__dirname + '/server/node_modules/App/');
 	Application = lib.require('Application'),
 	Config = lib.require('Config');
@@ -15,7 +15,7 @@ var env = (process.env.NODE_ENV || (fs.existsSync('./.env') && fs.readFileSync('
 /**
  * App config:
  */
-var config = new Config('./server/config.json').getSection(env) || {};
+var config = new Config(__dirname + '/server/config.json').getSection(env) || {};
 
 /**
  * Start application

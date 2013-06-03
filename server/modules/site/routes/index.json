@@ -1,7 +1,7 @@
 {
 	"external-index": {
 		"methods": "get|head",
-		"url": "/",
+		"url": "/home",
 		"action": "index:index"
 	},
 
