@@ -1,45 +1,44 @@
-var load = require(__dirname + '/application/classloader').load,
-	express = require('express'),
+//var load = require(__dirname + '/application/classloader').load,
+
+var express = require('express'),
 	fs = require('fs'),
+	Loader = require('./server/node_modules/App/ClassLoader'),
+	lib = new Loader(__dirname + '/server/node_modules/App/');
+	Application = lib.require('Application'),
+	Config = lib.require('Config');
 
-	// TODO enable after moving to a lib
-	//Application = require('App/core/Application'),
-	//Config = require('App/core/ConfigLoader'),
-	Application = load('App.core.Application'),
-	Config = load('App.core.ConfigLoader');
+/**
+ * Env: process.env or './.env' file or 'production'
+ */
+var env = (process.env.NODE_ENV || (fs.existsSync('./.env') && fs.readFileSync('./.env').toString()) || 'production');
 
-var config = new Config(__dirname + '/application/config.json');
-var env = 'production';
-if (fs.existsSync(__dirname + '/.env')) {
-	env = fs.readFileSync(__dirname + '/.env').toString();
-}
+/**
+ * App config:
+ */
+var config = new Config('./server/config.json').getSection(env) || {};
 
-if (fs.existsSync(__dirname + '/application/config.' + env + '.json')) {
-	var envConfig = new Config(__dirname + '/application/config.' + env + '.json');
-	config.append(envConfig.getConfig());
-}
-
-// start application
-var app = new Application(config);
-var e = app.getExpress();
+/**
+ * Start application
+ */
+var app = new Application(config, env);
 
 // adds a stdout log
-e.use(express.logger());
-
+app.use(express.logger())
 // enable compression
-e.use(express.compress());
-
+.use(express.compress())
 // cookie parser (req.cookies)
-e.use(express.cookieParser());
-
+.use(express.cookieParser())
 // favicon
-e.use(express.favicon());
-
+.use(express.favicon())
 // serve statics
-e.use(express.static(__dirname + '/public'));
-
+.use(express.static(__dirname + '/client'))
 // enable session support
-e.use(express.session({ secret: 'llap!', cookie: { maxAge: 60000 }}));
+.use(express.session({
+	secret: 'llap!',
+	cookie: {
+		maxAge: 60000
+	}
+}))
 
 // and voila!
-app.listen(process.env.PORT || config.getConfig().serverPort || 5100);
+.listen(process.env.PORT || config.serverPort);

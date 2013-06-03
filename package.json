@@ -19,7 +19,6 @@
 		"mysql": "~2.0.0-alpha8",
 		"jn-classjs": "0.0.2",
 		"lodash": "~1.2.1",
-		"log-color": "~1.0.0",
 		"log": "~1.4.0",
 		"memjs": "~0.6.0"
 	}

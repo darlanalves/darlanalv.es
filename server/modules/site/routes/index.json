@@ -1,0 +1,13 @@
+{
+	"external-index": {
+		"methods": "get|head",
+		"url": "/",
+		"action": "index:index"
+	},
+
+	"external-name": {
+		"methods": "get",
+		"url": "/user",
+		"action": "index:profile"
+	}
+}
